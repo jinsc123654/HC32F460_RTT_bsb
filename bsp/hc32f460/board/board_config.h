@@ -32,10 +32,10 @@
 
 #if defined(BSP_USING_UART3)
     #define USART3_RX_PORT                  (PortB)
-    #define USART3_RX_PIN                   (Pin08)
+    #define USART3_RX_PIN                   (Pin05)
 
     #define USART3_TX_PORT                  (PortB)
-    #define USART3_TX_PIN                   (Pin09)
+    #define USART3_TX_PIN                   (Pin06)
 #endif
 
 #if defined(BSP_USING_UART4)

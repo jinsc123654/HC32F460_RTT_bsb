@@ -52,8 +52,4 @@ msh >
 4. 输入`scons --target=mdk5` 命令重新生成工程。
 
 ## 5. 联系人信息
-
-维护人：
-
-- [lizhengyang](https://github.com/GoldBr1987)
-
+增加了AT组件调试
