@@ -240,11 +240,16 @@ static void hc32_pin_write(rt_device_t dev, rt_base_t pin, rt_base_t value)
         gpio_pin  = GPIO_PIN(pin);
         if (PIN_LOW == value)
         {
-            PORT_ResetBits(gpio_port, gpio_pin);
+//            PORT_ResetBits(gpio_port, gpio_pin);
+            *((uint16_t *)((uint32_t)(&M4_PORT->PORRA) + 0x10u * gpio_port))|= gpio_pin;
+        }
+        else if( PIN_HIGH == value )
+        {
+            *((uint16_t *)((uint32_t)(&M4_PORT->POSRA) + 0x10u * gpio_port))|= gpio_pin;
         }
         else
         {
-            PORT_SetBits(gpio_port, gpio_pin);
+            *((uint16_t *)((uint32_t)(&M4_PORT->POTRA) + 0x10u * gpio_port)) |= gpio_pin;//·­×ª
         }
     }
 }

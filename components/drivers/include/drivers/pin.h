@@ -27,6 +27,7 @@ struct rt_device_pin
 
 #define PIN_LOW                 0x00
 #define PIN_HIGH                0x01
+#define PIN_TOGGLE                0x03
 
 #define PIN_MODE_OUTPUT         0x00
 #define PIN_MODE_INPUT          0x01
