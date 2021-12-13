@@ -1,3 +1,12 @@
+<!--
+ * @Descripttion: 文件描述
+ * @version: 文件版本
+ * @Author: jinsc
+ * @Date: 2021-12-13 09:23:50
+ * @LastEditors: jinsc
+ * @LastEditTime: 2021-12-13 10:42:52
+ * @FilePath: \undefinedd:\DSP\my_rtt_master\bsp\hc32f460\README.md
+-->
 # HC32F460PETB#
 
 ## 1. 简介
@@ -53,3 +62,4 @@ msh >
 
 ## 5. 联系人信息
 增加了AT组件调试
+修改了默认芯片

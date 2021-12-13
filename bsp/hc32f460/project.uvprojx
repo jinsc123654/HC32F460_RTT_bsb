@@ -398,11 +398,6 @@
               <FilePath>..\..\components\net\at\at_socket\at_socket.c</FilePath>
             </File>
             <File>
-              <FileName>at_cli.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\net\at\src\at_cli.c</FilePath>
-            </File>
-            <File>
               <FileName>at_server.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\components\net\at\src\at_server.c</FilePath>
@@ -413,14 +408,19 @@
               <FilePath>..\..\components\net\at\src\at_base_cmd.c</FilePath>
             </File>
             <File>
-              <FileName>at_client.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\net\at\src\at_client.c</FilePath>
-            </File>
-            <File>
               <FileName>at_utils.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\components\net\at\src\at_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>at_cli.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\components\net\at\src\at_cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>at_client.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\components\net\at\src\at_client.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -428,9 +428,9 @@
           <GroupName>at_device</GroupName>
           <Files>
             <File>
-              <FileName>at_device_esp8266.c</FileName>
+              <FileName>at_sample_esp8266.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\at_device-latest\class\esp8266\at_device_esp8266.c</FilePath>
+              <FilePath>packages\at_device-latest\samples\at_sample_esp8266.c</FilePath>
             </File>
             <File>
               <FileName>at_device.c</FileName>
@@ -438,14 +438,14 @@
               <FilePath>packages\at_device-latest\src\at_device.c</FilePath>
             </File>
             <File>
-              <FileName>at_sample_esp8266.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\at_device-latest\samples\at_sample_esp8266.c</FilePath>
-            </File>
-            <File>
               <FileName>at_socket_esp8266.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\at_device-latest\class\esp8266\at_socket_esp8266.c</FilePath>
+            </File>
+            <File>
+              <FileName>at_device_esp8266.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\at_device-latest\class\esp8266\at_device_esp8266.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -453,14 +453,14 @@
           <GroupName>CPU</GroupName>
           <Files>
             <File>
-              <FileName>div0.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libcpu\arm\common\div0.c</FilePath>
-            </File>
-            <File>
               <FileName>showmem.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\libcpu\arm\common\showmem.c</FilePath>
+            </File>
+            <File>
+              <FileName>div0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libcpu\arm\common\div0.c</FilePath>
             </File>
             <File>
               <FileName>backtrace.c</FileName>
@@ -498,6 +498,11 @@
               <FilePath>..\..\components\drivers\src\ringblk_buf.c</FilePath>
             </File>
             <File>
+              <FileName>waitqueue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\components\drivers\src\waitqueue.c</FilePath>
+            </File>
+            <File>
               <FileName>workqueue.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\components\drivers\src\workqueue.c</FilePath>
@@ -508,24 +513,19 @@
               <FilePath>..\..\components\drivers\src\ringbuffer.c</FilePath>
             </File>
             <File>
-              <FileName>waitqueue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\drivers\src\waitqueue.c</FilePath>
-            </File>
-            <File>
               <FileName>completion.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\components\drivers\src\completion.c</FilePath>
             </File>
             <File>
-              <FileName>dataqueue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\drivers\src\dataqueue.c</FilePath>
-            </File>
-            <File>
               <FileName>pipe.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\components\drivers\src\pipe.c</FilePath>
+            </File>
+            <File>
+              <FileName>dataqueue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\components\drivers\src\dataqueue.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -683,29 +683,9 @@
           <GroupName>Kernel</GroupName>
           <Files>
             <File>
-              <FileName>idle.c</FileName>
+              <FileName>device.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\idle.c</FilePath>
-            </File>
-            <File>
-              <FileName>mempool.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\src\mempool.c</FilePath>
-            </File>
-            <File>
-              <FileName>timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\src\timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>irq.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\src\irq.c</FilePath>
-            </File>
-            <File>
-              <FileName>clock.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\src\clock.c</FilePath>
+              <FilePath>..\..\src\device.c</FilePath>
             </File>
             <File>
               <FileName>ipc.c</FileName>
@@ -713,14 +693,14 @@
               <FilePath>..\..\src\ipc.c</FilePath>
             </File>
             <File>
+              <FileName>idle.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\src\idle.c</FilePath>
+            </File>
+            <File>
               <FileName>scheduler.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\src\scheduler.c</FilePath>
-            </File>
-            <File>
-              <FileName>components.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\src\components.c</FilePath>
             </File>
             <File>
               <FileName>mem.c</FileName>
@@ -728,14 +708,14 @@
               <FilePath>..\..\src\mem.c</FilePath>
             </File>
             <File>
-              <FileName>object.c</FileName>
+              <FileName>mempool.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\object.c</FilePath>
+              <FilePath>..\..\src\mempool.c</FilePath>
             </File>
             <File>
-              <FileName>device.c</FileName>
+              <FileName>irq.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\src\device.c</FilePath>
+              <FilePath>..\..\src\irq.c</FilePath>
             </File>
             <File>
               <FileName>thread.c</FileName>
@@ -743,9 +723,29 @@
               <FilePath>..\..\src\thread.c</FilePath>
             </File>
             <File>
+              <FileName>clock.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\src\clock.c</FilePath>
+            </File>
+            <File>
+              <FileName>object.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\src\object.c</FilePath>
+            </File>
+            <File>
+              <FileName>components.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\src\components.c</FilePath>
+            </File>
+            <File>
               <FileName>kservice.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\src\kservice.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\src\timer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -753,14 +753,14 @@
           <GroupName>libc</GroupName>
           <Files>
             <File>
-              <FileName>mem_std.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\libc\compilers\armlibc\mem_std.c</FilePath>
-            </File>
-            <File>
               <FileName>syscalls.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\components\libc\compilers\armlibc\syscalls.c</FilePath>
+            </File>
+            <File>
+              <FileName>mem_std.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\components\libc\compilers\armlibc\mem_std.c</FilePath>
             </File>
             <File>
               <FileName>libc_syms.c</FileName>
@@ -793,14 +793,14 @@
               <FilePath>..\..\components\net\netdev\src\netdev_ipaddr.c</FilePath>
             </File>
             <File>
-              <FileName>net_netdb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\components\net\sal_socket\socket\net_netdb.c</FilePath>
-            </File>
-            <File>
               <FileName>af_inet_at.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\components\net\sal_socket\impl\af_inet_at.c</FilePath>
+            </File>
+            <File>
+              <FileName>net_netdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\components\net\sal_socket\socket\net_netdb.c</FilePath>
             </File>
             <File>
               <FileName>sal_socket.c</FileName>
