@@ -68,6 +68,17 @@
 #define lv_vsnprintf rt_vsnprintf
 #define LV_SPRINTF_USE_FLOAT 0
 
+#define LV_USE_PERF_MONITOR 1                                                   //CPUº∞÷°¬ œ‘ æ
+#if LV_USE_PERF_MONITOR
+#define LV_USE_PERF_MONITOR_POS LV_ALIGN_BOTTOM_RIGHT
+#endif
+
+/*Default display refresh period. LVG will redraw changed areas with this period time*/
+#define LV_DISP_DEF_REFR_PERIOD 33      /*[ms]*/
+
+/*Input device read period in milliseconds*/
+#define LV_INDEV_DEF_READ_PERIOD 33     /*[ms]*/
+
 /*=====================
  *  COMPILER SETTINGS
  *====================*/

@@ -8,12 +8,6 @@ void LED2_Toggle(void *args)
 
 int bsp_io_init(void)
 {
-    PORT_DebugPortSetting(TDO_SWO,Disable); //关闭JTDI 调试管脚
-    PORT_DebugPortSetting(TDI,Disable); //关闭JTDI 调试管脚
-    PORT_DebugPortSetting(TRST,Disable); //关闭JTDI 调试管脚
-    EFM_Unlock();
-    bM4_EFM_FRMC_CACHE = 1;//开启flash加速
-    EFM_Lock();
 //    rt_pin_mode(LED_RUN_PIN, PIN_MODE_OUTPUT);
 //    rt_pin_mode(LED_STA_PIN, PIN_MODE_OUTPUT);
 //    

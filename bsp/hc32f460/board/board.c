@@ -24,67 +24,59 @@ void SysClkConfig(void)
     stc_clk_sysclk_cfg_t    stcSysClkCfg;
     stc_clk_xtal_cfg_t      stcXtalCfg;
     stc_clk_mpll_cfg_t      stcMpllCfg;
-    stc_sram_config_t           stcSramConfig;
+    stc_sram_config_t       stcSramConfig;
 
     MEM_ZERO_STRUCT(stcSysClkCfg);
     MEM_ZERO_STRUCT(stcXtalCfg);
     MEM_ZERO_STRUCT(stcMpllCfg);
+    MEM_ZERO_STRUCT(stcSramConfig);
 
-    /* Set bus clk div.  */
-    stcSysClkCfg.enHclkDiv  = ClkSysclkDiv1;
-    stcSysClkCfg.enExclkDiv = ClkSysclkDiv2;
-    stcSysClkCfg.enPclk0Div = ClkSysclkDiv1;
-    stcSysClkCfg.enPclk1Div = ClkSysclkDiv2;
-    stcSysClkCfg.enPclk2Div = ClkSysclkDiv4;
-    stcSysClkCfg.enPclk3Div = ClkSysclkDiv4;
-    stcSysClkCfg.enPclk4Div = ClkSysclkDiv2;
+    /* Set bus clk div. */
+    stcSysClkCfg.enHclkDiv  = ClkSysclkDiv1;/*  200M ,max 200MHz */
+    stcSysClkCfg.enExclkDiv = ClkSysclkDiv2;/*  100M ,max 100MHz */
+    stcSysClkCfg.enPclk0Div = ClkSysclkDiv1;/*  200M ,max 200MHz */
+    stcSysClkCfg.enPclk1Div = ClkSysclkDiv1;/*  100M ,max 100MHz */
+    stcSysClkCfg.enPclk2Div = ClkSysclkDiv4;/*  60M  ,max 50MHz  */
+    stcSysClkCfg.enPclk3Div = ClkSysclkDiv4;/*  50M  ,max 100MHz */
+    stcSysClkCfg.enPclk4Div = ClkSysclkDiv2;/*  100M ,max 100MHz */
     CLK_SysClkConfig(&stcSysClkCfg);
 
-    /* Switch system clock source to MPLL. */
-    /* Use Xtal as MPLL source. */
-    stcXtalCfg.enMode        = ClkXtalModeOsc;
-    stcXtalCfg.enDrv         = ClkXtalLowDrv;
-
+    /* Config Xtal and Enable Xtal */
+    stcXtalCfg.enMode = ClkXtalModeOsc;
+    stcXtalCfg.enDrv = ClkXtalLowDrv;
     stcXtalCfg.enFastStartup = Enable;
     CLK_XtalConfig(&stcXtalCfg);
     CLK_XtalCmd(Enable);
-
-    while (Set != CLK_GetFlagStatus(ClkFlagXTALRdy))
-    {
-        ;
-    }
-
-    /* MPLL config. */
-    stcMpllCfg.pllmDiv = 1ul;
-    stcMpllCfg.plln    = 50ul;
-    stcMpllCfg.PllpDiv = 4ul;
-    stcMpllCfg.PllqDiv = 4ul;
-    stcMpllCfg.PllrDiv = 4ul;
-    CLK_SetPllSource(ClkPllSrcXTAL);
-    CLK_MpllConfig(&stcMpllCfg);
-
-    /* flash read wait cycle setting */
-    EFM_Unlock();
-    EFM_SetLatency(5ul);
-    EFM_Lock();
 
     /* sram init include read/write wait cycle setting */
     stcSramConfig.u8SramIdx = Sram12Idx | Sram3Idx | SramHsIdx | SramRetIdx;
     stcSramConfig.enSramRC = SramCycle2;
     stcSramConfig.enSramWC = SramCycle2;
-    stcSramConfig.enSramEccMode = EccMode3;
-    stcSramConfig.enSramEccOp = SramNmi;
-    stcSramConfig.enSramPyOp = SramNmi;
     SRAM_Init(&stcSramConfig);
+
+    /* flash read wait cycle setting */
+    EFM_Unlock();
+    EFM_SetLatency(EFM_LATENCY_5);
+    EFM_Lock();
+
+    /* MPLL config (XTAL / pllmDiv * plln / PllpDiv = 200M). */
+    stcMpllCfg.pllmDiv = 1ul;
+    stcMpllCfg.plln    = 50ul;
+    stcMpllCfg.PllpDiv = 2ul;
+    stcMpllCfg.PllqDiv = 2ul;
+    stcMpllCfg.PllrDiv = 2ul;
+    CLK_SetPllSource(ClkPllSrcXTAL);
+    CLK_MpllConfig(&stcMpllCfg);
 
     /* Enable MPLL. */
     CLK_MpllCmd(Enable);
-
     /* Wait MPLL ready. */
-    while (Set != CLK_GetFlagStatus(ClkFlagMPLLRdy))
+    while(Set != CLK_GetFlagStatus(ClkFlagMPLLRdy))
     {
         ;
     }
+    /* Switch driver ability */
+    PWC_HS2HP();
     /* Switch system clock source to MPLL. */
     CLK_SetSysClkSource(CLKSysSrcMPLL);
 }
@@ -99,6 +91,12 @@ void SysTick_Handler(void)
 void rt_hw_board_init(void)
 {
     SysClkConfig();
+    PORT_DebugPortSetting(TDO_SWO,Disable); //关闭JTDI 调试管脚
+    PORT_DebugPortSetting(TDI,Disable); //关闭JTDI 调试管脚
+    PORT_DebugPortSetting(TRST,Disable); //关闭JTDI 调试管脚
+    EFM_Unlock();
+    bM4_EFM_FRMC_CACHE = 1;//开启flash加速
+    EFM_Lock();
     SysTick_Init(RT_TICK_PER_SECOND);
     /* Call components board initial (use INIT_BOARD_EXPORT()) */
 #ifdef RT_USING_COMPONENTS_INIT
