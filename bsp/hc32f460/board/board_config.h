@@ -16,10 +16,10 @@
 /***********  Port configure *********/
 #if defined(BSP_USING_UART1)
     #define USART1_RX_PORT                  (PortA)
-    #define USART1_RX_PIN                   (Pin00)
+    #define USART1_RX_PIN                   (Pin10)
 
     #define USART1_TX_PORT                  (PortA)
-    #define USART1_TX_PIN                   (Pin01)
+    #define USART1_TX_PIN                   (Pin15)
 #endif
 
 #if defined(BSP_USING_UART2)

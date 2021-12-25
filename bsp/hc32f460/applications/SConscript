@@ -2,11 +2,9 @@ import rtconfig
 from building import *
 
 cwd     = GetCurrentDir()
-CPPPATH = [cwd, str(Dir('#'))]
-src     = Split("""
-main.c
-SystemLight.c
-""")
+CPPPATH = [cwd + '/bsp_init']
+src  = Glob('./*.c')
+src += Glob('bsp_init/bsp_io_init.c')
 
 group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
 

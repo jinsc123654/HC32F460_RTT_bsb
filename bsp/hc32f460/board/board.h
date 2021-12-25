@@ -16,7 +16,7 @@
 
 /* board configuration */
 #define SRAM_BASE 0x1FFF8000
-#define SRAM_SIZE 32*1024
+#define SRAM_SIZE 150*1024
 #define SRAM_END (SRAM_BASE + SRAM_SIZE)
 
 /* High speed sram. */

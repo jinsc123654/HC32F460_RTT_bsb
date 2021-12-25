@@ -43,6 +43,8 @@ extern "C" {
 /*
  * kernel object interface
  */
+#define delay_us  rt_hw_us_delay
+#define delay_ms  rt_thread_mdelay
 struct rt_object_information *
 rt_object_get_information(enum rt_object_class_type type);
 int rt_object_get_length(enum rt_object_class_type type);

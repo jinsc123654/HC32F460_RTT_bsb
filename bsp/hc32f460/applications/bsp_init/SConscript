@@ -1,0 +1,11 @@
+import rtconfig
+from building import *
+
+cwd     = GetCurrentDir()
+BSP_INIT += [cwd]
+src = Split("""
+bsp_io_init.c
+""")
+group = DefineGroup('Applications', src, depend = [''], CPPPATH = BSP_INIT)
+
+Return('group')

@@ -10,23 +10,24 @@
 #include "board.h"
 #include <rtthread.h>
 #include <rtdevice.h>
-
+#include "lvgl.h"
 #include "bsp_io_init.h"
 
 void SystemLight_thread_init(void);//空闲中断监测CPU的线程
 
-#define DELAY_MS                (RT_TICK_PER_SECOND)    /* 1s */
+#define DELAY_MS                (1)    /* 1s */
 
 
-
+void lv_example_meter_2(void);
 int32_t main(void)
 {
-    bsp_io_init();
-    SystemLight_thread_init();
 
+    SystemLight_thread_init();
+    lv_example_meter_2 ();
     while (1)
-    {
-        rt_thread_delay(DELAY_MS);
+    {    
+        lv_task_handler();
+        rt_thread_mdelay(DELAY_MS);
     }
 }
 

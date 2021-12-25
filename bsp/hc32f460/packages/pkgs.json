@@ -3,5 +3,10 @@
   "path": "/packages/iot/at_device", 
   "ver": "latest", 
   "name": "AT_DEVICE"
+ }, 
+ {
+  "path": "/packages/multimedia/LVGL/LVGL", 
+  "ver": "v8.1.0", 
+  "name": "LVGL"
  }
 ]
