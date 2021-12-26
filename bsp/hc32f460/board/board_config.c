@@ -58,3 +58,67 @@ rt_err_t rt_hw_board_uart_init(M4_USART_TypeDef *USARTx)
 }
 #endif
 
+#if defined (RT_USING_SPI)
+void hc32_board_spi_init(M4_SPI_TypeDef *M4_SPIx, rt_uint8_t mode)
+{
+#if defined (BSP_USING_SPI1)
+    stc_port_init_t stcGpioCfg;
+
+    MEM_ZERO_STRUCT(stcGpioCfg);
+
+    /* Port configurate, High driving capacity for output pin.
+       CMOS input for input pin */
+    if(mode & RT_SPI_3WIRE)
+    {
+        /* code */
+    }
+    else
+    {
+        if(mode & RT_SPI_SLAVE)
+        {
+            stcGpioCfg.enPinOType = Pin_OType_Cmos;
+        }
+        else
+        {
+            stcGpioCfg.enPinDrv = Pin_Drv_H;
+        }
+        PORT_Init(SPI1_NSS_PORT,  SPI1_NSS_PIN, &stcGpioCfg);
+        PORT_SetFunc(SPI1_NSS_PORT, SPI1_NSS_PIN, SPI1_NSS_GPIO_FUNC, Disable);
+    }
+    if(mode & RT_SPI_SLAVE)
+    {
+        stcGpioCfg.enPinOType = Pin_OType_Cmos;
+        PORT_Init(SPI1_SCK_PORT,  SPI1_SCK_PIN, &stcGpioCfg);
+        PORT_Init(SPI1_MOSI_PORT, SPI1_MOSI_PIN, &stcGpioCfg);
+        stcGpioCfg.enPinDrv = Pin_Drv_H;
+        PORT_Init(SPI1_MISO_PORT, SPI1_MISO_PIN, &stcGpioCfg);
+    }
+    else
+    {
+        stcGpioCfg.enPinDrv = Pin_Drv_H;
+        PORT_Init(SPI1_SCK_PORT,  SPI1_SCK_PIN, &stcGpioCfg);
+        PORT_Init(SPI1_MOSI_PORT, SPI1_MOSI_PIN, &stcGpioCfg);
+        stcGpioCfg.enPinOType = Pin_OType_Cmos;
+        PORT_Init(SPI1_MISO_PORT, SPI1_MISO_PIN, &stcGpioCfg);
+    }
+
+    PORT_SetFunc(SPI1_SCK_PORT,  SPI1_SCK_PIN,  SPI1_SCK_GPIO_FUNC, Disable);
+    PORT_SetFunc(SPI1_MOSI_PORT, SPI1_MOSI_PIN, SPI1_MOSI_GPIO_FUNC, Disable);
+    PORT_SetFunc(SPI1_MISO_PORT, SPI1_MISO_PIN, SPI1_MISO_GPIO_FUNC, Disable);
+#endif
+
+#if defined (BSP_USING_SPI2)
+    /* Config SPI2 relevant port according to SPI1 */
+#endif
+
+#if defined (BSP_USING_SPI3)
+    /* Config SPI3 relevant port according to SPI1 */
+#endif
+    
+#if defined (BSP_USING_SPI4)
+    /* Config SPI4 relevant port according to SPI1 */
+#endif
+
+}
+#endif
+

@@ -30,29 +30,29 @@ static void Spi1_Config(void)
     PORT_SetFunc(SPI_MOSI_PORT, SPI_MOSI_PIN, SPI_MOSI_FUNC, Disable);
 
     /* Configuration SPI structure */
-    stcSpiInit.enClkDiv = SpiClkDiv2;
-    stcSpiInit.enFrameNumber = SpiFrameNumber1;
-    stcSpiInit.enDataLength = SpiDataLengthBit8;
-    stcSpiInit.enFirstBitPosition = SpiFirstBitPositionMSB;
-    stcSpiInit.enSckPolarity = SpiSckIdleLevelLow;
-    stcSpiInit.enSckPhase = SpiSckOddSampleEvenChange;
-    stcSpiInit.enReadBufferObject = SpiReadReceiverBuffer;
-    stcSpiInit.enWorkMode = SpiWorkMode3Line;
-    stcSpiInit.enTransMode = SpiTransOnlySend;
-    stcSpiInit.enCommAutoSuspendEn = Disable;
-    stcSpiInit.enModeFaultErrorDetectEn = Disable;
-    stcSpiInit.enParitySelfDetectEn = Disable;
-    stcSpiInit.enParityEn = Disable;
-    stcSpiInit.enParity = SpiParityEven;
+    stcSpiInit.enClkDiv = SpiClkDiv2;                                           //PCLK2 分频2
+    stcSpiInit.enFrameNumber = SpiFrameNumber1;                                 //spi帧数
+    stcSpiInit.enDataLength = SpiDataLengthBit8;                                //spi工作模式
+    stcSpiInit.enFirstBitPosition = SpiFirstBitPositionMSB;                     //spi首先输出的位数
+    stcSpiInit.enSckPolarity = SpiSckIdleLevelLow;                              //spi空闲时clk的状态
+    stcSpiInit.enSckPhase = SpiSckOddSampleEvenChange;                          //spi采样及变更的点（此处奇数采样偶数变更）
+    stcSpiInit.enReadBufferObject = SpiReadReceiverBuffer;                      //spi数据缓存选择
+    stcSpiInit.enWorkMode = SpiWorkMode3Line;                                   //spi工作的线数
+    stcSpiInit.enTransMode = SpiTransOnlySend;                                  //spi全双工或仅发送
+    stcSpiInit.enCommAutoSuspendEn = Disable;                                   //spi启用/禁用通信自动挂起
+    stcSpiInit.enModeFaultErrorDetectEn = Disable;                              //spi启用/禁用模式故障错误检测
+    stcSpiInit.enParitySelfDetectEn = Disable;                                  //spi启用/禁用奇偶校验自检测
+    stcSpiInit.enParityEn = Disable;                                            //spi启用/禁用奇偶校验（如果启用奇偶校验且SPI_CR1.TXMDS=1，则接收数据不奇偶校验）
+    stcSpiInit.enParity = SpiParityEven;                                        //spi奇偶校验模式选择
 
     /* SPI master mode */
-    stcSpiInit.enMasterSlaveMode = SpiModeMaster;
-    stcSpiInit.stcDelayConfig.enSsSetupDelayOption = SpiSsSetupDelayCustomValue;
-    stcSpiInit.stcDelayConfig.enSsSetupDelayTime = SpiSsSetupDelaySck1;
-    stcSpiInit.stcDelayConfig.enSsHoldDelayOption = SpiSsHoldDelayCustomValue;
-    stcSpiInit.stcDelayConfig.enSsHoldDelayTime = SpiSsHoldDelaySck1;
-    stcSpiInit.stcDelayConfig.enSsIntervalTimeOption = SpiSsIntervalCustomValue;
-    stcSpiInit.stcDelayConfig.enSsIntervalTime = SpiSsIntervalSck6PlusPck2;
+    stcSpiInit.enMasterSlaveMode = SpiModeMaster;                               //spi主从选择
+    stcSpiInit.stcDelayConfig.enSsSetupDelayOption = SpiSsSetupDelayCustomValue;//spi SS延时模式选择
+    stcSpiInit.stcDelayConfig.enSsSetupDelayTime = SpiSsSetupDelaySck1;         //spi SS延时数目选择
+    stcSpiInit.stcDelayConfig.enSsHoldDelayOption = SpiSsHoldDelayCustomValue;  //spi SS保持模式选择
+    stcSpiInit.stcDelayConfig.enSsHoldDelayTime = SpiSsHoldDelaySck1;           //spi SS保持数目选择
+    stcSpiInit.stcDelayConfig.enSsIntervalTimeOption = SpiSsIntervalCustomValue;//spi ss间隔模式选择
+    stcSpiInit.stcDelayConfig.enSsIntervalTime = SpiSsIntervalSck6PlusPck2;     //spi SS保持数目选择
 
     SPI_Init(SPI_UNIT, &stcSpiInit);
     SPI_Cmd(SPI_UNIT, Enable);

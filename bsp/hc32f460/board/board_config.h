@@ -79,7 +79,24 @@
     #define USART4_RX_INT_PRIO              (DDL_IRQ_PRIORITY_00)
 #endif
 
+/***********  SPI configure *********/
+#if defined(BSP_USING_SPI1)
+#define SPI1_NSS_PORT                   (PortC)   //这里是无效的
+#define SPI1_NSS_PIN                    (Pin13)
+#define SPI1_NSS_GPIO_FUNC              (Func_Spi1_Nss0)
 
+#define SPI1_SCK_PORT                   (PortA)
+#define SPI1_SCK_PIN                    (Pin02)
+#define SPI1_SCK_GPIO_FUNC              (Func_Spi1_Sck)
+
+#define SPI1_MOSI_PORT                  (PortA)
+#define SPI1_MOSI_PIN                   (Pin00)
+#define SPI1_MOSI_GPIO_FUNC             (Func_Spi1_Mosi)
+
+#define SPI1_MISO_PORT                  (PortA)
+#define SPI1_MISO_PIN                   (Pin03)
+#define SPI1_MISO_GPIO_FUNC             (Func_Spi1_Miso)
+#endif
 
 /***********  Pin configure *********/
 #if defined(RT_USING_PIN)

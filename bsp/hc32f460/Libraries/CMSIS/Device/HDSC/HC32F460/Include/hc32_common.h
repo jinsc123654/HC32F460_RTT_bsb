@@ -205,6 +205,10 @@ typedef enum en_result
 #define SET_REG16_BIT(REG, BIT)         ((REG) |= ((uint16_t)(BIT)))
 #define SET_REG32_BIT(REG, BIT)         ((REG) |= ((uint32_t)(BIT)))
 
+#define READ_REG8_BIT(REG, BIT)         ((REG) & ((uint8_t)(BIT)))
+#define READ_REG16_BIT(REG, BIT)        ((REG) & ((uint16_t)(BIT)))
+#define READ_REG32_BIT(REG, BIT)        ((REG) & ((uint32_t)(BIT)))
+
 #define READ_REG8(REG)                  (REG)
 #define READ_REG16(REG)                 (REG)
 #define READ_REG32(REG)                 (REG)
